@@ -51,6 +51,10 @@ class Server {
         this.app.use(this.path.auth, require('../routes/authRoute'));
         this.app.use(this.path.music, require('../routes/musicRouter'));
         this.app.use(this.path.musicActual, require('../routes/musicaActualRouter'));
+
+        this.app.get('*', (req , res) => {
+            res.sendFile('index.html', {'root': __dirname + '/../public/'});
+        });
     }
 
     listen(){
